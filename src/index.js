@@ -13,8 +13,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 // your code goes here
 app.get("/topRankings", async (req, res) => {
-  const limit = Number(req.query.limit || 20);
-  const offset = Number(req.query.offset || 0);
+    let limit = 20;
+    let offset = 0;
+  if(!isNaN(parseInt(req.query.limit)))
+    limit = parseInt(req.query.limit);
+  if(!isNaN(parseInt(req.query.offset)))
+    offset = parseInt(req.query.offset);  
+  // console.log(limit, offset,Number.isInteger(req.query.limit));
   res.send(data.slice(offset, offset + limit));
 });
 
