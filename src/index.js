@@ -16,7 +16,7 @@ app.get("/topRankings", async (req, res) => {
     let limit = 20;
     let offset = 0;
   if(!isNaN(parseInt(req.query.limit)))
-    limit = parseInt(req.query.limit);
+    limit = parseInt(req.query.limit) <= 0 ? 20: parseInt(req.query.limit);
   if(!isNaN(parseInt(req.query.offset)))
     offset = parseInt(req.query.offset);  
   // console.log(limit, offset,Number.isInteger(req.query.limit));
